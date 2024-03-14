@@ -1,16 +1,17 @@
 .header{
-    background-color: rgb(211, 171, 171);
     display: flex;
     align-items: center;
     flex-direction: row;
     height: 10vh;
     width: 100%;
 }
-.right-item{
+.logo-item{
     margin-right: auto;
 }
-.right-item h1 {
+.logo-item h2 {
     margin-left: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 800;
 }
 
 .left-item{
@@ -21,8 +22,9 @@
 }
 .items{
     margin-right: 1rem;
-    font-weight: 100;
+    color: #4D4D4D;
 }
-.left-item a:hover {
+.header a:hover {
     transform: translate(1px, 1px);
+    text-decoration: underline;
 }
