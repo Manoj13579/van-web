@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Server.jsx';
+import '../../Components/Server.jsx';
 import Vansitem from './Vansitem.jsx';
-import '../Style/Vansitem.css';
+import '../../Style/Vansitem.css';
 
 const Vans = () => {
 

@@ -1,0 +1,100 @@
+/* HostLayout */
+.host-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.host-navbar a {
+    color: #4D4D4D;
+    font-weight: 500;
+}
+.host-navbar a:hover {
+    color: #161616;
+    text-decoration: underline;
+    font-weight: 600;
+}
+.host-navbar .my-link {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #161616;
+}
+/* HostVans */
+.hostvans-container {
+    display: flex;
+    align-items: center;
+}
+.hostvans-container > img {
+    width: 10%;
+    margin: 1rem;
+}
+/* HostVansDetail */
+.back-button {
+    color: black;
+    text-decoration: underline;
+    display: block;
+    margin: 2rem 0 2rem 1rem;
+}
+
+.hostvans-detail-container {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0 2rem 1rem;
+}
+.hostvans-detail-container> img {
+    width: 15%;
+    border-radius: 0.5rem;
+}
+
+.hostvans-detail-container button,h3,p {
+    margin: 0 0 1rem 1rem;
+}
+.hostvans-detail-container button {
+    width: 5rem;
+    height: 2rem;
+    outline: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border-style: none;
+    color: white;
+    font-size: 1rem;
+}
+.hostvans-detail-container .hostvans-rugged {
+    background-color: #115E59;
+}
+.hostvans-detail-container .hostvans-simple {
+    background-color: #E17654;
+}
+.hostvans-detail-container .hostvans-luxury {
+    background-color: #161616;
+}
+.hostvansdetail-navlinks {
+display: flex;
+align-items: center;
+justify-content: space-around;
+color: #4D4D4D;
+}
+.hostvansdetail-navlinks .nav-links {
+    color: black;
+    font-weight: bold;
+    text-decoration: underline;
+
+    /* HostVansDetails nav */
+
+}
+.hostvans-nav-detailcontainer span {
+    color: #4D4D4D;
+}
+.hostvans-nav-detailcontainer > h4 {
+margin: 2rem 0 1rem 2rem;
+}
+.hostvans-nav-detailcontainer-photos > img {
+    width: 15%;
+    margin: 2rem 0 1rem 1rem;
+    border-radius: 0.5rem;
+}
+.hostvans-nav-detailcontainer-price > h4 {
+    margin: 2rem 0 0 1rem;
+}
+.hostvans-nav-detailcontainer-price span {
+    color: #4D4D4D;
+}

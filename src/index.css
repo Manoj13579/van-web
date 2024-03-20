@@ -14,3 +14,13 @@ a {
     text-decoration: unset;
     color: unset;
 }
+/* Footer */
+footer {
+    display: flex;
+    background-color: #161616;
+    height: 20vh;
+    align-items: center;
+    color: #AAAAAA;
+    justify-content: center;
+    margin-top: auto;
+}

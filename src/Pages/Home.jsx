@@ -1,8 +1,8 @@
 import React from 'react';
-import '../Style/Whole.css';
+import '../Style/Home.css';
 import { Link } from "react-router-dom";
 
-const Whole = () => {
+const Home = () => {
   return (
     <div className="home-container">
     <h1>You got the travel plans, we got the travel vans.</h1>
@@ -12,4 +12,4 @@ const Whole = () => {
   )
 }
 
-export default Whole
+export default Home
