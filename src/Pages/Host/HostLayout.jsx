@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../Style/Host.css';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const HostLayout = () => {

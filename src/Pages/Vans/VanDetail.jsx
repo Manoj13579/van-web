@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import '../../Components/Server.jsx';
-import '../../Style/Vansitem.css';
+import React from 'react';
+import { Link, useLocation, useLoaderData } from 'react-router-dom';
+import '../../Components/Server.js';
+import { getVans } from '../../Utility/Api.js';
+
+
+export function loader ({params}) {
+  return getVans(params.id);
+}
 
 
 const VanDetail = () => {
 
-const params = useParams();
-const [vansDataP, setVansDataP] = useState("");
 
-console.log(vansDataP)
-    useEffect(()=>{
-    fetch(`/api/vans/${params.id}`)
-    .then((res) => res.json())
-        .then((json) => {
-          setVansDataP(json.vans)
-    })
-  },[params.id])
+const location = useLocation();
+const vansDataP = useLoaderData();
+
+
+// look for optional chaining
+const search = location.state?.search || "";
+const type = location.state?.type || "all";
+
 
   return (
     <div>
-    {vansDataP ? (
+      <Link to={`..${search}`}
+       relative = 'path'
+      >
+      <span className='back-button'>&larr; back to {type} vans</span>
+      </Link>
       <div className='vans-item'>
     <img src={vansDataP.imageUrl} />
     <div className="description-bar">
@@ -31,7 +38,6 @@ console.log(vansDataP)
          <button className='rent'>Rent this van</button>
     </div>
     </div>
-    ) : (<h1>Loading...</h1>)}
     </div>
   )
 }
