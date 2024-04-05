@@ -1,32 +1,39 @@
-import React from 'react';
-import { Link, NavLink, Outlet, useLoaderData } from 'react-router-dom';
-import { getHostVans } from '../../Utility/Api.js';
+import React, { Suspense } from 'react';
+import { Link,
+   NavLink,
+   Outlet,
+   useLoaderData,
+   defer,
+   Await } from 'react-router-dom';
+import { getVan } from '../../Utility/Api.js';
 import { requireAuth } from '../../Utility/Auth.js';
 
 
-export async function loader ({params}) {
-  await requireAuth();
-  return getHostVans(params.id);
+export async function loader ({ params, request }) {
+  await requireAuth(request);
+  return defer ({ vans: getVan(params.id) });
 }
 
 
 const HostVansDetail = () => {
 
-const paramId = useLoaderData();
+const dataPromise = useLoaderData();
 
+
+const renderHostVansDetailElement = (data) => {
   return (
-    <div>
-      <Link to=".."
+  <>
+  <Link to=".."
        relative = 'path'
       >
       <span className='back-button'>&larr; back to all vans</span>
       </Link>
       <div className='hostvans-detail-container'>
-      <img src={paramId.imageUrl} />
+      <img src={data.imageUrl} />
       <div>
-      <button className={`hostvans-${paramId.type}`}><i>{paramId.type}</i></button>
-      <h3>{paramId.name}</h3>
-      <p>${paramId.price}/day</p>
+      <button className={`hostvans-${data.type}`}><i>{data.type}</i></button>
+      <h3>{data.name}</h3>
+      <p>${data.price}/day</p>
       </div>
       </div>
       <nav className="hostvansdetail-navlinks">
@@ -44,7 +51,18 @@ const paramId = useLoaderData();
     }
       ><h4>photos</h4></NavLink>
       </nav>
-      <Outlet context={ {paramId }}/>
+      <Outlet context={ {data }}/>
+  </>
+  )
+}
+
+  return (
+    <div>
+      <Suspense fallback={<h1>Loading Host Vans Detail...</h1>}>
+        <Await resolve={dataPromise.vans}>
+        {renderHostVansDetailElement}
+        </Await>
+      </Suspense>
     </div>
   )
 }

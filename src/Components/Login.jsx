@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { useLoaderData, Form, redirect } from 'react-router-dom';
+import React from 'react';
+import { 
+useLoaderData,
+Form,
+redirect,
+useActionData,
+useNavigation } from 'react-router-dom';
 import { loginUser } from '../Utility/Api';
 
 
@@ -10,37 +15,33 @@ export async function action({ request }){
 const formData = await request.formData()
 const email = formData.get('email')
 const password = formData.get('password')
+const pathname = new URL(request.url).searchParams.get("redirectTo") || "/host"
+
+try {
 const data = await loginUser ({ email, password })
 localStorage.setItem("loggedin", true)
-const response = redirect("/host")
+const response = redirect(pathname)
 response.body = true
 return (response) /* can also use throw for return*/ 
+}
+catch(err) {
+  return err.message
+}
 }
 
 const Login = () => {
   
-  const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null)
   const message = useLoaderData();
+  const errorMessage = useActionData();
+  const navigation = useNavigation();
 
-
-const handleSubmit = (e)=>{
-e.preventDefault();
-setStatus('submitting');
-setError(null)
-loginUser(formData)
-.then(data => console.log(data))
-.catch((err) => setError(err))
-.finally(() => setStatus("idle"));
-
-}
 
 
   return (
     <div className='form-container'>
       <h1>Sign in to your account</h1>
        {message && <h3 className = "red">{message}</h3>}
-      {error && <h3 className = "red">{error.message}</h3>}
+      {errorMessage && <h3 className = "red">{errorMessage}</h3>}
       <Form method='post'
        className='input-form'
        replace
@@ -55,8 +56,8 @@ loginUser(formData)
       type='password'
       name='password'
       />
-      <button disabled={status === "submitting"}>
-        {status === "submitting" ? "Logging in..." : "Log in"}
+      <button disabled={navigation.state === "submitting"}>
+        {navigation.state === "submitting" ? "Logging in..." : "Log in"}
         </button>
       </Form>
     </div>

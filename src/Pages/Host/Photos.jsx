@@ -3,10 +3,10 @@ import { useOutletContext } from 'react-router-dom'
 
 const Photos = () => {
 
-const { paramId } = useOutletContext();
+const { data } = useOutletContext();
 
   return (
-    <div className='hostvans-nav-detailcontainer-photos'><img src={paramId.imageUrl}/></div>
+    <div className='hostvans-nav-detailcontainer-photos'><img src={data.imageUrl}/></div>
   )
 }
 
