@@ -8,7 +8,7 @@ import { getFirestore,
          where } from "firebase/firestore/lite";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCT7STlM3Q0BBYWUflwtlhcvc89GT144mQ",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "vanweb-6ba50.firebaseapp.com",
   projectId: "vanweb-6ba50",
   storageBucket: "vanweb-6ba50.appspot.com",
